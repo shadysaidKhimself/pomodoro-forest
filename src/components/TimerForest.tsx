@@ -28,11 +28,6 @@ export default function TimerForest() {
     localStorage.setItem('pomodoro_forest_history', JSON.stringify(forestHistory));
   }, [forestHistory]);
 
-  // Generate random position within safe bounds (10-90%)
-  const getRandomPosition = (): { top: string; left: string } => ({
-    top: `${10 + Math.random() * 80}%`,
-    left: `${10 + Math.random() * 80}%`
-  });
 
   // Audio URLs from public folder
   const SOUNDS: Record<SoundType, string> = {
@@ -65,9 +60,6 @@ export default function TimerForest() {
     };
   }, [status, soundType, isMuted]);
 
-  // Tree variations for diversity
-  const TREE_VARIATIONS = ['🌲', '🌳', '🌴', '🌵', '🎋', '🍁', '🍀', '🌸', '🏵️', '🌻', '🌿'];
-
   // Handle Timer Tick
   useEffect(() => {
     let interval: number | null = null;
@@ -84,20 +76,23 @@ export default function TimerForest() {
           setStatus('COMPLETED');
           triggerFireworks();
           
-          // Randomly select tree variety and visual style
-          const randomTree = TREE_VARIATIONS[Math.floor(Math.random() * TREE_VARIATIONS.length)];
-          const randomRotation = Math.floor(Math.random() * 20) - 10; // -10 to +10 degrees
-          const randomScale = 0.8 + Math.random() * 0.4; // 0.8 to 1.2 scale
+          // Improved position randomness (covering 5% to 95% range)
+          const randomTop = (5 + Math.random() * 90).toFixed(2);
+          const randomLeft = (5 + Math.random() * 90).toFixed(2);
           
-          // Add to history with random position and variety
+          // Final visual style: fixed tree icon, no rotation, slight scale variety
+          const randomScale = 0.9 + Math.random() * 0.3; // 0.9 to 1.2 scale
+          
+          // Add to history with enhanced random position
           setForestHistory(prev => [
             { 
               id: Date.now(), 
               date: new Date().toISOString(), 
-              tree: randomTree, 
-              rotation: randomRotation,
+              tree: '🌲', 
+              rotation: 0,
               scale: randomScale,
-              ...getRandomPosition() 
+              top: `${randomTop}%`,
+              left: `${randomLeft}%`
             },
             ...prev
           ]);
