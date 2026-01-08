@@ -65,6 +65,10 @@ export default function TimerForest() {
     };
   }, [status, soundType, isMuted]);
 
+  // Tree variations for diversity
+  const TREE_VARIATIONS = ['🌲', '🌳', '🌴', '🌵', '🎋', '🍁', '🍀', '🌸', '🏵️', '🌻', '🌿'];
+
+  // Handle Timer Tick
   useEffect(() => {
     let interval: number | null = null;
     if (status === 'RUNNING' && timeLeft > 0) {
@@ -80,12 +84,19 @@ export default function TimerForest() {
           setStatus('COMPLETED');
           triggerFireworks();
           
-          // Add to history with random position
+          // Randomly select tree variety and visual style
+          const randomTree = TREE_VARIATIONS[Math.floor(Math.random() * TREE_VARIATIONS.length)];
+          const randomRotation = Math.floor(Math.random() * 20) - 10; // -10 to +10 degrees
+          const randomScale = 0.8 + Math.random() * 0.4; // 0.8 to 1.2 scale
+          
+          // Add to history with random position and variety
           setForestHistory(prev => [
             { 
               id: Date.now(), 
               date: new Date().toISOString(), 
-              tree: '🌲', 
+              tree: randomTree, 
+              rotation: randomRotation,
+              scale: randomScale,
               ...getRandomPosition() 
             },
             ...prev

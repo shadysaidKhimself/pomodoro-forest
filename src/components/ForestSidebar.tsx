@@ -6,6 +6,8 @@ export interface ForestHistoryItem {
   tree: string;
   top?: string;
   left?: string;
+  rotation?: number;
+  scale?: number;
 }
 
 interface ForestSidebarProps {
@@ -37,7 +39,8 @@ export default function ForestSidebar({ forestHistory }: ForestSidebarProps) {
              className="absolute text-3xl cursor-help group/tree hover:z-50 hover:scale-125 transition-all duration-300 drop-shadow-lg pointer-events-auto"
              style={{ 
                top: item.top || `${(index * 40) % 90}%`, 
-               left: item.left || `${(index * 20) % 80}%` 
+               left: item.left || `${(index * 20) % 80}%`,
+               transform: `rotate(${item.rotation || 0}deg) scale(${item.scale || 1})`
              }}
            >
              {item.tree}
