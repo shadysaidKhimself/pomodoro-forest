@@ -24,7 +24,7 @@ export default function ForestSidebar({ forestHistory }: ForestSidebarProps) {
       </div>
 
       {/* Tree Container - Full Sidebar Area */}
-      <div className="absolute inset-0 top-20 left-4 w-full h-full pointer-events-auto">
+      <div className="absolute inset-0 top-20 left-4 w-full h-full pointer-events-none">
          {forestHistory.length === 0 && (
            <div className="text-4xl opacity-10 grayscale filter absolute top-10 left-10">🌲</div>
          )}
@@ -34,7 +34,7 @@ export default function ForestSidebar({ forestHistory }: ForestSidebarProps) {
              initial={{ scale: 0, opacity: 0 }}
              animate={{ scale: 1, opacity: 1 }}
              transition={{ delay: index * 0.05, type: "spring" }}
-             className="absolute text-3xl cursor-help group/tree hover:z-50 hover:scale-125 transition-all duration-300 drop-shadow-lg"
+             className="absolute text-3xl cursor-help group/tree hover:z-50 hover:scale-125 transition-all duration-300 drop-shadow-lg pointer-events-auto"
              style={{ 
                top: item.top || `${(index * 40) % 90}%`, 
                left: item.left || `${(index * 20) % 80}%` 

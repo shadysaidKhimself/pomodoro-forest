@@ -102,7 +102,15 @@ export default function TimerForest() {
     };
   }, [status]); 
 
-  const handleStart = () => setStatus('RUNNING');
+  const handleStart = () => {
+    setStatus('RUNNING');
+    // Mobile browsers require audio playback to be initiated by a user gesture
+    if (audioRef.current) {
+      audioRef.current.play().catch(() => {
+        /* Silence errors if it fails here, the useEffect will handle it after unlock */
+      });
+    }
+  };
   const handlePause = () => setStatus('PAUSED');
   const handleReset = () => {
     setStatus('IDLE');
