@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-[#1A2F1A] text-[#E8F5E9];
+  background: radial-gradient(circle at center, #1e3a1e 0%, #0d180d 100%);
+  margin: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes walk {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.5); }
+}
+
+.animate-walk {
+  animation: walk 20s linear infinite;
+}
