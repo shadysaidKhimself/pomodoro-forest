@@ -1,5 +1,7 @@
 # Pomodoro Forest 🌲
 
+帶有白噪音的沉浸式番茄鐘 (Immersive Pomodoro with White Noise)
+
 A focus timer application that gamifies productivity. Plant a seed, focus for 25 minutes, and watch it grow into a majestic tree. If you break focus, the tree withers.
 
 ## Stack
