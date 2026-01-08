@@ -9,7 +9,7 @@ export default function ImmersiveBackground({ status }: ImmersiveBackgroundProps
     <div className={`fixed inset-0 z-0 overflow-hidden pointer-events-none transition-opacity duration-1000 ${status === 'RUNNING' ? 'opacity-100' : 'opacity-0'}`}>
       <div 
         className="absolute inset-0 bg-cover bg-center animate-walk"
-        style={{ backgroundImage: "url('/forest-path.jpg')" }}
+        style={{ backgroundImage: `url('${import.meta.env.BASE_URL}forest-path.jpg')` }}
       />
       {/* Dark Overlay for Text Readability */}
       <div className="absolute inset-0 bg-black/30" />

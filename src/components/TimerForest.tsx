@@ -34,10 +34,10 @@ export default function TimerForest() {
     left: `${10 + Math.random() * 80}%`
   });
 
-  // Audio URLs
+  // Audio URLs from public folder
   const SOUNDS: Record<SoundType, string> = {
-    rain: '/rain.mp3',
-    fire: '/fireplace.mp3'
+    rain: `${import.meta.env.BASE_URL}rain.mp3`,
+    fire: `${import.meta.env.BASE_URL}fireplace.mp3`
   };
 
   // Handle Audio Playback
